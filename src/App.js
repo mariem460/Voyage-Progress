@@ -1,14 +1,11 @@
 import './App.css';
-import Dotts from './components/dottsProgress';
-
-
+import VoyageProgress from './components/voyageProgress';
+console.log("test")
 function App() {
   return (
     <div className="App">
       <p>Dashboard</p>  
-      <Dotts></Dotts>
-  
-      
+      <VoyageProgress></VoyageProgress>
     </div>
   );
 }
