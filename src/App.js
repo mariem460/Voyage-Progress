@@ -4,8 +4,8 @@ import VoyageProgress from './components/voyageProgress';
 function App() {
   const portOfLoading = "Madrid";
   const portOfDischarge = "Denmark";
-  const departureTime = "2022-11-16T19:10:12Z";
-  const arrivalTime = "2022-11-16T22:50:12Z";
+  const departureTime = "2022-11-20T18:00:12Z";
+  const arrivalTime = "2022-11-20T22:00:12Z";
   return (
     <div className="App">
       <p>Dashboard</p>  

@@ -1,4 +1,4 @@
-import pin from './pin.png'
+//import pin from './pin.png'
 import Dot from './dot'
 import '../styles/voyageProgress.css'
 
@@ -46,22 +46,14 @@ function voyageProgress ({portOfLoading, portOfDischarge, departureTime, arrival
             portName={dotDetails.portName}
             key={index}
             color={dotDetails.color}
-            isLastInProgress={index === indexOfLastInProgress}>
+            isLastInProgress={index === indexOfLastInProgress}
+            progressPercentage={progressPercentage}>
         </Dot>
     })
 
-    let pinStyle = {
-        position: "relative",
-        left: (progressPercentage - 170),
-        height: '50px',
-        width: '50px'
-    }
 
     return (
         <div className="progress-bar">
-            <div className="pin-container">
-                <img src={pin} alt="pin" style={pinStyle}/>
-            </div>
             <div className="dots-container">
                 {dots}
             </div>
