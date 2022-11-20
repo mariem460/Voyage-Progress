@@ -3,41 +3,56 @@ import Dot from './dot'
 import '../styles/voyageProgress.css'
 
 function voyageProgress ({portOfLoading, portOfDischarge, departureTime, arrivalTime}) {
-    console.log(portOfLoading)
     const dotsCount = 14;
     const arrayOfDots = [...Array(dotsCount).keys()];
+    const currentTime = new Date().getTime();
+    var totalTime = new Date(arrivalTime).getTime() - new Date(departureTime).getTime();
+    var progress = currentTime - new Date(departureTime).getTime();
+    const timePercentage = Math.round(progress / totalTime * 100 );
+
+    //[true, true, true, faelse, false felae]
+
     const allDotsDetails = arrayOfDots
         .map(i => {
-            const currentTime = Date.now;
-            const percentage = (arrivalTime - departureTime)- currentTime/100;
-            let color = "#85bef7";
-            if (percentage[i] <= percentage[i+1]) {
-                <img src = {pin} alt = "pin_image"/>
-                color = "#85bef7";
+            let color = "rgb(136, 162, 189)";
+            const dotPercentage = Math.round(i / dotsCount * 100 );
+            let isLastInProgress = false;
+            if (dotPercentage <= timePercentage) {
+                isLastInProgress = true;
+                color = "rgb(56, 80, 106)";
             }
             let dotDetails = { isExtremity: false, color};
+    
             if (i === 0 || i === dotsCount - 1) {
                 dotDetails = {
                     ...dotDetails,
                     isExtremity: true,
-                    portName: i === 0 ? portOfLoading  : portOfDischarge
+                    portName: i === 0 ? portOfLoading  : portOfDischarge,
+                    isLastInProgress
                 }
-                console.log(dotDetails)
             }
             return dotDetails;
-        });
+        })
 
+    let dots = allDotsDetails.map((dotDetails, index) => 
+            <Dot isExtremity = {dotDetails.isExtremity} portName={dotDetails.portName} key={index} color={dotDetails.color} isLastInProgress={dotDetails.isLastInProgress}></Dot>)
 
-    let dots = allDotsDetails
-        .map((dotDetails, index) => 
-        <Dot isExtremity = {dotDetails.isExtremity}  key={index}></Dot>
-        )
+    let pinStyle = {
+        position: "relative",
+        left: (timePercentage - 170),
+        height: '50px',
+        width: '50px'
+    }
+
     return (
-        <div>
-            {dots}
-        </div>
-
-         
+        <div className="progress-bar">
+            <div className="pin-container">
+                <img src={pin} alt="pin" style={pinStyle}/>
+            </div>
+            <div className="dots-container">
+                {dots}
+            </div>
+        </div> 
         )
 }
 export default voyageProgress;

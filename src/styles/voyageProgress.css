@@ -1,4 +1,18 @@
-img{
-    height: 50px;
-    width:50px;
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
+.dots-container {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+}
+
+.pin-container {
+    height: 20px;
+    width: 500px;
+    margin-bottom: 30px;
 }
